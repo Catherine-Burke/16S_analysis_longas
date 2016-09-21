@@ -8,10 +8,11 @@ biom_otu_table<- import_biom("otu_table_mc1_w_tax_no_pynast_failures_json.biom",
 
 asaia_data <- merge_phyloseq(biom_otu_table,map)
 colnames(tax_table(asaia_data)) = c("Domain", "Phylum", "Class", "Order", 
-                                 "Family", "Genus", "Species")
+                                    "Family", "Genus", "Species")
 asaia_data
 sample_sums(asaia_data)
 asaia_rare100<-rarefy_even_depth(asaia_data, rngseed=511, replace=FALSE, sample.size=100)
+plot_richness(asaia_rare100, measures="Observed", x="location")
 asaia_wunifrac<-distance(asaia_rare100, "wunifrac")
 asaia_wu_ord<-ordinate(asaia_rare100, method="PCoA", distance=asaia_wunifrac)
 asaia_uu_ord<-ordinate(asaia_rare100, method="PCoA", distance="unifrac")
@@ -61,5 +62,3 @@ asaia_sub2_uunifrac<-distance(asaia_rare_sub2, "unifrac")
 asaia_sub2_uu_ord<-ordinate(asaia_rare_sub2, method="PCoA", distance=asaia_sub2_uunifrac)
 plot_ordination(asaia_rare_sub2, asaia_sub2_uu_ord, color="Source", title="PCoA of unweighted unifrac without Buxton Peach A or E\n50 seqs per sample")+
   scale_color_brewer(palette="Paired")
-
-
