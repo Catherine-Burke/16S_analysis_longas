@@ -77,7 +77,7 @@ plot_ordination(asaia_v4_rare_sub, asaia_v4_sub_uu_ord, color="Source", title="P
   scale_color_brewer(palette="Paired")
 asaia_v4_rare_sub2<-subset_samples(asaia_v4_rare_sub, !(Source%in%c("Buxton_Peach_A","Buxton_Peach_E")))
 sample_names(asaia_v4_rare_sub2)
-asaia_v4_sub2_wu_ord<-ordinate(asaia_rare_sub2, method="PCoA", distance="wunifrac")
+asaia_v4_sub2_wu_ord<-ordinate(asaia_v4_rare_sub2, method="PCoA", distance="wunifrac")
 plot_ordination(asaia_v4_rare_sub2, asaia_v4_sub2_wu_ord, color="Source", title="PCoA of weighted unifrac without Buxton Peach A or E\nV4 region 100 seqs")+
   scale_color_brewer(palette="Paired")
 ```
